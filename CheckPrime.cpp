@@ -1,4 +1,5 @@
 #include<iostream>
+#include "CheckPrime.hpp"
 
 using namespace std;
 
@@ -19,13 +20,4 @@ bool isPrime(int num){
     }
     cout<<"Number is Prime"<<endl;
     return true;
-}
-
-int main(){
-
-    cout<<"Enter a number to check Prime"<<endl;
-    int userInput;
-    cin>>userInput;
-
-    bool output = isPrime(userInput);
 }
