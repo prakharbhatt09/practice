@@ -1,14 +1,16 @@
 cmake_minimum_required(VERSION 3.5.0)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}C:\Users\PraBha\Documents\Git\Catch2)
 find_package(Catch2 REQUIRED)
 
-project(Circle_Area)
+set(Catch2_DIR C:\Users\PraBha\Documents\Git\Catch2\CMake)
+project(CheckPrime)
 
 add_library(Catch2 INTERFACE)
-target_include_directories(Catch2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/C:/Users/PraBha/Documents/Practice/Circle_Area)
+target_include_directories(Catch2 INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}C:\Users\PraBha\Documents\Practice\src\CheckPrime)
 
-add_executable(circle_area_ex main.cpp areaOfCircle.hpp)
+add_executable(CheckPrime main.cpp CheckPrime.hpp)
 
-add_executable(circle_area_tests addNumTest.cpp addNum.cpp) 
+add_executable(CheckPrimeTests CheckPrimeTests.cpp CheckPrime.cpp) 
 
-target_link_libraries(circle_area_tests PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(CheckPrimeTests Catch2::Catch2WithMain)
