@@ -1,0 +1,4 @@
+/home/pbhatt09/test/practice/cpptest/CheckPrime/CMakeFiles/CheckPrime.dir
+/home/pbhatt09/test/practice/cpptest/CheckPrime/CMakeFiles/CheckPrimeTests.dir
+/home/pbhatt09/test/practice/cpptest/CheckPrime/CMakeFiles/edit_cache.dir
+/home/pbhatt09/test/practice/cpptest/CheckPrime/CMakeFiles/rebuild_cache.dir

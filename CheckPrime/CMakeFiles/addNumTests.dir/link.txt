@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/addNumTests.dir/addNumTest.cpp.o CMakeFiles/addNumTests.dir/addNum.cpp.o -o addNumTests  /usr/lib/libCatch2WithMain.a 

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/CheckPrimeTests.dir/CheckPrimeTests.cpp.o CMakeFiles/CheckPrimeTests.dir/CheckPrime.cpp.o -o CheckPrimeTests  /usr/lib/libCatch2WithMain.a 
