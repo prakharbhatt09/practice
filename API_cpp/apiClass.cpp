@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -47,7 +48,21 @@ class RadioMessage{
         return vec_dec;
     };
 
+    vector<string> encode(vector<uint32_t>& vec_dec){
+        vector<string> vec_hex;
+
+        for (auto i:vec_dec){
+            stringstream ss;
+            ss<<hex<<i;
+            vec_hex.push_back(ss.str());
+        }
+        return vec_hex;
+    }
+
+
 };
+
+
 
 int main(){
     RadioMessage Message1;
