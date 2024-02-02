@@ -75,14 +75,20 @@ int main(){
         Message1.rfa2 = 0;
         
         vector<string> hexValues = {to_string(Message1.Cookie), to_string(Message1.ReceiverHandle), to_string(Message1.rfa), to_string(Message1.NrOfAntennaHandles), to_string(Message1.AntennaHandle), to_string(Message1.rfa1), to_string(Message1.rfa2)};
-
         vector<uint32_t> decodedValues = Message1.decode(hexValues);
-
         cout<<"Decoded Values: ";
-        for (uint32_t v:decodedValues){
+        for (uint32_t& v:decodedValues){
             cout<<v<<" ";
-
         }
         cout<<endl;
 
-}
+        vector<string> encodedValues = Message1.encode(decodedValues);
+        cout<<"Encoded Values: ";
+        for (string& v:encodedValues){
+            cout<<hex<<v<<" ";
+        }
+        cout<<endl;
+
+
+
+}       
