@@ -1,7 +1,6 @@
 #include<iostream>
 #include <string>
 #include <vector>
-#include "math.h"
 
 using namespace std;
 
@@ -34,24 +33,16 @@ class RadioMessage{
             cout<<"ReceiverHandle: "<<ReceiverHandle<<endl;
             cout<<"rfa: "<<rfa<<endl;
             cout<<"rfa2: "<<rfa2<<endl;
+            cout<<"NrOfAntennaHandles: "<<NrOfAntennaHandles<<endl;
 
     };
 
-    int hex2dec(char hexValue){
-        if (isdigit(hexValue)){
-            return hexValue;
-        }
-        else{
-            return toupper(hexValue) - 'A' + 10;
-        }
-    };
-
-    string decode(){
-        vector<uint32_t> vec_hex{RadioMessage::Cookie, RadioMessage::ReceiverHandle, RadioMessage::rfa, RadioMessage::NrOfAntennaHandles, RadioMessage::AntennaHandle, RadioMessage::rfa1, RadioMessage::rfa2};
-        vector<uint32_t> vec_dec{};
+    vector<uint32_t> decode(vector<string>& vec_hex){
+        vector<uint32_t> vec_dec;
         
-        for (int i=0; i<vec_hex.size(); i++){
-            vec_dec.push_back(hex2dec(vec_hex[i]));
+        for (auto i:vec_hex){
+            uint32_t hex2dec = stoul(i, nullptr, 16);
+            vec_dec.push_back(hex2dec);
         }
         return vec_dec;
     };
@@ -68,6 +59,15 @@ int main(){
         Message1.rfa1 = 0;
         Message1.rfa2 = 0;
         
-        Message1.decode();
+        vector<string> hexValues = {to_string(Message1.Cookie), to_string(Message1.ReceiverHandle), to_string(Message1.rfa), to_string(Message1.NrOfAntennaHandles), to_string(Message1.AntennaHandle), to_string(Message1.rfa1), to_string(Message1.rfa2)};
+
+        vector<uint32_t> decodedValues = Message1.decode(hexValues);
+
+        cout<<"Decoded Values: ";
+        for (uint32_t v:decodedValues){
+            cout<<v<<" ";
+
+        }
+        cout<<endl;
 
 }
