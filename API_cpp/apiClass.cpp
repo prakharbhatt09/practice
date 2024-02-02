@@ -20,11 +20,11 @@ class RadioMessage{
     uint32_t rfa2;
 
     void repeatMessage(){
-            for (int i=1; i<=NrOfAntennaHandles; i++)
-                {
-                   cout<<"AntennaHandle: "<<AntennaHandle<<endl;
-                   cout<<"rfa1: "<<rfa1<< endl;
-                }
+        for (int i=1; i<=NrOfAntennaHandles; i++)
+            {
+               cout<<"AntennaHandle: "<<AntennaHandle<<endl;
+               cout<<"rfa1: "<<rfa1<< endl;
+            }
     };
 
     void printParameters(){
@@ -39,7 +39,7 @@ class RadioMessage{
     };
 
     vector<uint32_t> decode(vector<string>& vec_hex){
-        vector<uint32_t> vec_dec;
+    vector<uint32_t> vec_dec;
         
         for (auto i:vec_hex){
             uint32_t hex2dec = stoul(i, nullptr, 16);
@@ -49,7 +49,7 @@ class RadioMessage{
     };
 
     vector<string> encode(vector<uint32_t>& vec_dec){
-        vector<string> vec_hex;
+    vector<string> vec_hex;
 
         for (auto i:vec_dec){
             stringstream ss;
