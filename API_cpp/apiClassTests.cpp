@@ -9,9 +9,9 @@ TEST_CASE("Decode a message with one antenna handle")
  
   message1.decode(hexValues);
  
-    CHECK(message.Cookie == 0x01);
-  //CHECK(message.ReceiverHandle == 0x01);
-  //CHECK(message.NrOfAntennaHandles == 0x01);
+    CHECK(message1.Cookie == 0x01);
+    CHECK(message1.ReceiverHandle == 0x01);
+    CHECK(message1.NrOfAntennaHandles == 0x01);
 }
 /*
 TEST_CASE("Decode a message with two antenna handle")
