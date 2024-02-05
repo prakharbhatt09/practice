@@ -1,8 +1,6 @@
 #include "apiClass.hpp"
 
 using namespace std;
-
-RadioMessage::RadioMessage() : Cookie(0), ReceiverHandle(0), NrOfAntennaHandles(0) {}
     
     vector<uint8_t> RadioMessage::encode() {
         vector<uint8_t> hex_val;
@@ -10,10 +8,12 @@ RadioMessage::RadioMessage() : Cookie(0), ReceiverHandle(0), NrOfAntennaHandles(
         hex_val.push_back((OpCode >> 8)& 0xFF); //check
         hex_val.push_back(ReceiverHandle);
         hex_val.push_back(NrOfAntennaHandles);
-    
+        AntennaHandle.clear();
+        rfa1.clear();
+
         for (uint8_t i = 0; i < NrOfAntennaHandles; i++) {
-            hex_val.push_back(AntennaHandle[i]);
-            hex_val.push_back(rfa1[i]);
+            hex_val.push_back(AntennaHandle.at(i));
+            hex_val.push_back(rfa1.at(i));
         }
         return hex_val;
     };
@@ -25,4 +25,9 @@ RadioMessage::RadioMessage() : Cookie(0), ReceiverHandle(0), NrOfAntennaHandles(
         AntennaHandle.clear();
         rfa1.clear();
         //0x45 0x00 0x45 0x00  ?
+
+        for (uint8_t i = 0; i<NrOfAntennaHandles; i++){
+            AntennaHandle.push_back(hex_val.at((2*i)+5));
+            rfa1.push_back(hex_val.at((2*i)+6));
+        }
     }
