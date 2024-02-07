@@ -3,11 +3,8 @@ project(APIClass)
 
 find_package(Catch2 REQUIRED)
 
-#add_library(Catch2 INTERFACE)
-#target_include_directories(Catch2 INTERFACE C:\Users\PraBha\Documents\Practice\src\CheckPrime)
+add_executable(apiClass_e main.cpp apiClass.hpp)
 
-#add_executable(apiClass main.cpp apiClass.hpp)
+add_executable(apiClassTests_e apiClassTests.cpp apiClass.cpp) 
 
-add_executable(apiClassTests apiClassTests.cpp apiClass.cpp) 
-
-target_link_libraries(apiClassTests Catch2::Catch2WithMain)
+target_link_libraries(apiClassTests_e PRIVATE Catch2::Catch2WithMain)
