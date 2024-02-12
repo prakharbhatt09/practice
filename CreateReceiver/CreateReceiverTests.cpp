@@ -6,13 +6,7 @@ using namespace std;
 
 TEST_CASE("encode a message")
 {
-  CreateReceiver receiver1;
-    receiver1.Cookie = 0x01;
-    receiver1.PHY_ID = 1;
-    receiver1.CTRL_ID = 2;
-    receiver1.BroadcastStandard = 1;
-    receiver1.ReceiverMode = 2;
-    receiver1.Rfa = 0x0000;
+  CreateReceiver receiver1(0x01,0x01,0x02,0x01,0x02,0x0000);
 
     auto encoded_msg = receiver1.encode();
  
@@ -33,12 +27,11 @@ TEST_CASE("decode a message")
 
   receiver2.decode(toDecode);
 
-    CHECK(receiver2.Cookie == 1);
-    //CHECK(receiver2.Opcode == 0x0203); macht sinn?
-    CHECK(receiver2.PHY_ID == 1);
-    CHECK(receiver2.CTRL_ID == 0);
-    CHECK(receiver2.BroadcastStandard == 1);
-    CHECK(receiver2.ReceiverMode == 0);
-    CHECK(receiver2.Rfa == 0x00);
+    CHECK(receiver2.getCookie() == 1);
+    CHECK(receiver2.getPHY_ID() == 1);
+    CHECK(receiver2.getCTRL_ID() == 0);
+    CHECK(receiver2.getBroadcastStandard() == 1);
+    CHECK(receiver2.getReceiverMode() == 0);
+    CHECK(receiver2.getRfa() == 0x00);
     
 }
