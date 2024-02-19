@@ -55,26 +55,26 @@ TEST_CASE("encode a message with 1 SoCs, zero TunerPath")
 
 TEST_CASE("encode a message with 1 SoCs and 1 TunerPath")
 {
-  GetResourceUsage_repl message2;
+  GetResourceUsage_repl message3;
 
-  message2.setCookie(1);
-  message2.setReplyStatus(0x10);
-  message2.setRfa(0);
-  message2.setNrOfSoCs(1);
-  message2.setRfa1(0);
-  message2.setSoC_ID(1);
-  message2.setNrOfTunerPaths(1);
-  message2.setAntennaHandle(4);
-  message2.setActive(1);
-  message2.setRfa2(0);
-  message2.setActiveNBTs(0x00);
-  message2.setAntennaPort(0x02);
-  message2.setRfa3(0);
-  message2.setNBT_ix(0x05);
-  message2.setAssigned_DFE_ix(0x03);
-  message2.setRfa4(0x000);
+  message3.setCookie(1);
+  message3.setReplyStatus(0x10);
+  message3.setRfa(0);
+  message3.setNrOfSoCs(1);
+  message3.setRfa1(0);
+  message3.setSoC_ID(1);
+  message3.setNrOfTunerPaths(1);
+  message3.setAntennaHandle(4);
+  message3.setActive(1);
+  message3.setRfa2(0);
+  message3.setActiveNBTs(0x00);
+  message3.setAntennaPort(0x02);
+  message3.setRfa3(0);
+  message3.setNBT_ix(0x05);
+  message3.setAssigned_DFE_ix(0x03);
+  message3.setRfa4(0x000);
 
-  vector<uint8_t> encoded_msg = message2.encode();
+  vector<uint8_t> encoded_msg = message3.encode();
   cout<<"size"<<size(encoded_msg)<<endl;
 
   CHECK(encoded_msg.at(0) == 0x01);
@@ -94,26 +94,26 @@ TEST_CASE("encode a message with 1 SoCs and 1 TunerPath")
 
 TEST_CASE("encode a message with 1-SoCs, 1-TunerPath, 1-Active NBT")
 {
-  GetResourceUsage_repl message2;
+  GetResourceUsage_repl message4;
 
-  message2.setCookie(1);
-  message2.setReplyStatus(0x10);
-  message2.setRfa(0);
-  message2.setNrOfSoCs(1);
-  message2.setRfa1(0);
-  message2.setSoC_ID(1);
-  message2.setNrOfTunerPaths(1);
-  message2.setAntennaHandle(4);
-  message2.setActive(1);
-  message2.setRfa2(0);
-  message2.setActiveNBTs(0x01);
-  message2.setAntennaPort(0x02);
-  message2.setRfa3(0);
-  message2.setNBT_ix(0x10);
-  message2.setAssigned_DFE_ix(0x05);
-  message2.setRfa4(0x000);
+  message4.setCookie(1);
+  message4.setReplyStatus(0x10);
+  message4.setRfa(0);
+  message4.setNrOfSoCs(1);
+  message4.setRfa1(0);
+  message4.setSoC_ID(1);
+  message4.setNrOfTunerPaths(1);
+  message4.setAntennaHandle(4);
+  message4.setActive(1);
+  message4.setRfa2(0);
+  message4.setActiveNBTs(0x01);
+  message4.setAntennaPort(0x02);
+  message4.setRfa3(0);
+  message4.setNBT_ix(0x10);
+  message4.setAssigned_DFE_ix(0x05);
+  message4.setRfa4(0x000);
 
-  vector<uint8_t> encoded_msg = message2.encode();
+  vector<uint8_t> encoded_msg = message4.encode();
   cout<<"size"<<size(encoded_msg)<<endl;
 
   CHECK(encoded_msg.at(0) == 0x01);
