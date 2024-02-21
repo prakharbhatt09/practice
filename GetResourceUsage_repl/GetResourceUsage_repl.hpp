@@ -22,6 +22,7 @@ class GetResourceUsage_repl{
         uint8_t Rfa1;
         uint8_t SoC_ID; //4bitmsb
         uint8_t NrOfTunerPaths; //Max8
+        uint8_t NrOfDFEs; //Max8
         uint32_t Rfa6;
         public:
         SoC();
@@ -72,16 +73,16 @@ class GetResourceUsage_repl{
             void setRfa3(uint8_t n){Rfa3 = n;}  
 
         };
+        vector<TunerPath> tunerPaths;
             class DFE{
               private:
-                uint8_t NrOfDFEs;//Max 8
-
+              uint8_t NrOfAssignedReceivers;//Max 8
               public:  
                 DFE();
 
                 class Receiver{
                     private:
-                    uint8_t NrOfAssignedReceivers;//Max 8
+                    
                     uint8_t ReceiverHandle;
                     uint8_t BroadcastStandard; //4bitmsb
                     uint8_t Mode; //4bitmsb
@@ -89,34 +90,35 @@ class GetResourceUsage_repl{
 
                     public:
                     Receiver();
-                    uint8_t getNrOfAssignedReceivers(){return NrOfAssignedReceivers;}
+                    
                     uint8_t getReceiverHandle(){return ReceiverHandle;}
                     uint8_t getBroadcastStandard(){return BroadcastStandard;}//4bitmsb
                     uint8_t getMode(){return Mode;}//4bitmsb
                     uint16_t getRfa5(){return Rfa5;}
-
-                    void setNrOfAssignedReceivers(uint8_t t){NrOfAssignedReceivers = t;}
+                    
                     void setReceiverHandle(uint8_t u){ReceiverHandle = u;}
                     void setBroadcastStandard(uint8_t v){BroadcastStandard = v;}//4bitmsb
                     void setMode(uint8_t w){Mode = w;}//4bitmsb
                     void setRfa5(uint8_t x){Rfa5 = x;}
                 };
                 vector<Receiver> AssignedReceivers;
-
-                uint8_t getNrOfDFEs(){return NrOfDFEs;}
-                void setNrOfDFEs(uint8_t s){NrOfDFEs = s;}
+                uint8_t getNrOfAssignedReceivers(){return NrOfAssignedReceivers;}
+                void setNrOfAssignedReceivers(uint8_t t){NrOfAssignedReceivers = t;}
             };
-            vector<TunerPath> tunerPaths;
             vector<DFE> dfes;
+
             uint8_t getRfa1(){return Rfa1;}
             uint8_t getSoC_ID(){return SoC_ID;}//4bitmsb
             uint8_t getNrOfTunerPaths(){return NrOfTunerPaths;}
+            uint8_t getNrOfDFEs(){return NrOfDFEs;}
             uint32_t getRfa6(){return Rfa6;}
 
             void setRfa1(uint8_t e){Rfa1 = e;}
             void setSoC_ID(uint8_t f){SoC_ID = f;}
             void setNrOfTunerPaths(uint8_t g){NrOfTunerPaths = g;}
+            void setNrOfDFEs(uint8_t s){NrOfDFEs = s;}
             void setRfa6(uint8_t y){Rfa6 = y;}
+                
     };
     vector<SoC> socs;
     
