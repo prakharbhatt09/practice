@@ -27,6 +27,5 @@ class NBT{
     void setAssigned_DFE_ix(uint8_t q){Assigned_DFE_ix = q;}
     void setRfa4(uint8_t r){Rfa4 = r;}
 
-    void addNBTInstance(NBT);
 };
 #endif

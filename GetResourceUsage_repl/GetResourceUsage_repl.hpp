@@ -34,10 +34,13 @@ class GetResourceUsage_repl{
     void setRfa(uint8_t c){Rfa = c;}
     void setNrOfSoCs(uint8_t d){NrOfSoCs = d;}
     void setRfa7(uint32_t z){Rfa7 = z;}
+    
+    vector<SoC> socs;
+
+    void addsocInstance(SoC &socObject);
 
     vector<uint8_t> encode();
     void decode(const vector<uint8_t>& toDecode);
-    vector<SoC> socs;
 
 };
 #endif

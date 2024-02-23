@@ -34,10 +34,11 @@ class SoC{
     void setNrOfTunerPaths(uint8_t g){NrOfTunerPaths = g;}
     void setNrOfDFEs(uint8_t s){NrOfDFEs = s;}
     void setRfa6(uint8_t y){Rfa6 = y;}
-      
-    void addsocInstance(SoC);
 
     vector<TunerPath> tunerPaths;
     vector<DFE> dfes;
+
+    void addtunerPathInstance(TunerPath &tunerPathObject);
+    void addDFEInstance(DFE &DFEObject);
 };
 #endif

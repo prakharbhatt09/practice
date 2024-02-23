@@ -21,8 +21,8 @@ class DFE{
 
     void setNrOfAssignedReceivers(uint8_t t){NrOfAssignedReceivers = t;}
 
-    void addDFEInstance(DFE);
-
     vector<Receiver> AssignedReceivers;
+
+    void addReceiverInstance(Receiver &receiverObject);
 };
 #endif

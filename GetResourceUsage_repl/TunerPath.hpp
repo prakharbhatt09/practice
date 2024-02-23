@@ -38,7 +38,8 @@ class TunerPath{
     void setAntennaPort(uint8_t m){AntennaPort = m;}//4bitmsb
     void setRfa3(uint8_t n){Rfa3 = n;}  
 
-    void addtunerPathInstance(TunerPath);
     vector<NBT> nbts;
+
+    void addNBTInstance(NBT &nbtObject);
 };
 #endif
