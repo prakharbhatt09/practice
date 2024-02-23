@@ -28,7 +28,7 @@ vector<uint8_t> GetResourceUsage_repl::encode(){
         for(uint8_t j=0; j<soc.getNrOfTunerPaths(); j++){
             auto &tunerPath = soc.tunerPaths.at(j);
             toEncode.push_back(tunerPath.getAntennaHandle());//7
-            toEncode.push_back((tunerPath.getActive()<<1)|(tunerPath.getRfa2()<<3)|(tunerPath.getActiveNBTs()<<4 & 0x0F));
+            toEncode.push_back((tunerPath.getActive())|(tunerPath.getRfa2()<<3)|(tunerPath.getActiveNBTs() & 0x0F)<<4);
                                                             //8
             for(uint8_t k=0; k<tunerPath.getActiveNBTs(); k++){
                 auto &nbt = tunerPath.nbts.at(k);
@@ -47,7 +47,7 @@ vector<uint8_t> GetResourceUsage_repl::encode(){
                 for(uint8_t n=0; n<dfe.getNrOfAssignedReceivers(); n++){
                     auto &rec = dfe.AssignedReceivers.at(n);
                     toEncode.push_back(rec.getReceiverHandle());//15
-                    toEncode.push_back((rec.getBroadcastStandard()<<4)|(rec.getMode()<<4 & 0x0F));//16
+                    toEncode.push_back((rec.getBroadcastStandard()<<4)|(rec.getMode() & 0x0F));//16
                     toEncode.push_back(rec.getRfa5()>>8 & 0xFF);//17
                     toEncode.push_back(rec.getRfa5() & 0xFF);//18
                 }

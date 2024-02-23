@@ -71,7 +71,7 @@ TEST_CASE("encoding a message with 1 SoCs, 1 TunerPath, 1 NBT, 1 DFE, 1 Assigned
   CHECK(encoded_msg.at(5) == 0x01);//rfa+socid
   CHECK(encoded_msg.at(6) == 0x01);//tunerpaths
   CHECK(encoded_msg.at(7) == 0x11);//AHandle
-  CHECK(encoded_msg.at(8) == 0x11);//1,0,1 how? expected == 2
+  CHECK(encoded_msg.at(8) == 0x11);//1,0,1 how?
   CHECK(encoded_msg.at(9) == 0x10);
   CHECK(encoded_msg.at(10) == 0x05);
   CHECK(encoded_msg.at(11) == 0x00);
@@ -79,7 +79,7 @@ TEST_CASE("encoding a message with 1 SoCs, 1 TunerPath, 1 NBT, 1 DFE, 1 Assigned
   CHECK(encoded_msg.at(13) == 0x01);//dfe
   CHECK(encoded_msg.at(14) == 0x01);//assgn rec
   CHECK(encoded_msg.at(15) == 0x20);//rec handle
-  CHECK(encoded_msg.at(16) == 0x22);//broadcaststd+Mode expected == 0
+  CHECK(encoded_msg.at(16) == 0x22);//broadcaststd+Mode
   CHECK(encoded_msg.at(17) == 0x00);
   CHECK(encoded_msg.at(18) == 0x00);
   CHECK(encoded_msg.at(19) == 0x00);
