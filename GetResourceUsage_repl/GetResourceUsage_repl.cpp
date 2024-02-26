@@ -72,48 +72,52 @@ void GetResourceUsage_repl::decode(const vector<uint8_t>& toDecode){
     setReplyStatus(toDecode.at(3));
     setRfa((toDecode.at(4)) >> 4);
     setNrOfSoCs(toDecode.at(4) & 0x0F);
+    int index = 5;
     
     for(uint8_t i=0; i<NrOfSoCs; i++){
         SoC soc;
-        soc.setRfa1((toDecode.at(5))>>4);
-        soc.setSoC_ID((toDecode.at(5) & 0x0F));
-        soc.setNrOfTunerPaths(toDecode.at(6));
+        soc.setRfa1((toDecode.at(index))>>4);//5
+        soc.setSoC_ID((toDecode.at(index) & 0x0F));//5
+        soc.setNrOfTunerPaths(toDecode.at(index++));//6
 
         for(uint8_t j=0; j<soc.getNrOfTunerPaths(); j++){
             TunerPath path;
-            path.setAntennaHandle(toDecode.at(7));
-            path.setActive(toDecode.at(8)>>1);//check
-            path.setRfa2(toDecode.at(8)>>3);
-            path.setActiveNBTs((toDecode.at(8)>>4) & 0x0F);
-            path.setAntennaPort(toDecode.at(9)>>4);
-            path.setRfa3((toDecode.at(9)>>4) & 0x0F);
+            path.setAntennaHandle(toDecode.at(index++));//7
+            int extractAtIndex_1 = index++;
+            path.setActive(toDecode.at(extractAtIndex_1)>>1);//8,check?
+            path.setRfa2(toDecode.at(extractAtIndex_1)>>3);//8
+            path.setActiveNBTs((toDecode.at(extractAtIndex_1)>>4) & 0x0F);//8
+            int extractAtIndex_2 = index++;
+            path.setAntennaPort(toDecode.at(extractAtIndex_2)>>4);//9
+            path.setRfa3((toDecode.at(extractAtIndex_2)>>4) & 0x0F);//9
 
             for(uint8_t k=0; k<path.getActiveNBTs(); k++){
                 NBT nbt;
-                nbt.setNBT_ix(toDecode.at(10));
-                nbt.setAssigned_DFE_ix(toDecode.at(11));
-                nbt.setRfa4(((toDecode.at(12)<<8) & 0xFF)|((toDecode.at(13) & 0xFF)));
+                nbt.setNBT_ix(toDecode.at(index++));//10
+                nbt.setAssigned_DFE_ix(toDecode.at(index++));//11
+                nbt.setRfa4(((toDecode.at(index++)<<8) & 0xFF)|((toDecode.at(index++) & 0xFF)));//12,13
                 path.addNBTInstance(nbt);
             }
             soc.addtunerPathInstance(path);
         }
-        soc.setNrOfDFEs(toDecode.at(14));
+        soc.setNrOfDFEs(toDecode.at(index++));//14
         for(uint8_t x=0; x<soc.getNrOfDFEs(); x++){
             DFE dfe;
-            dfe.setNrOfAssignedReceivers(toDecode.at(15));
+            dfe.setNrOfAssignedReceivers(toDecode.at(index++));//15
 
             for(uint8_t y=0; y<dfe.getNrOfAssignedReceivers(); y++){
                 Receiver rec;
-                rec.setReceiverHandle(toDecode.at(16));
-                rec.setBroadcastStandard((toDecode.at(17))>>4);
-                rec.setMode((toDecode.at(17)) & 0x0F);
-                rec.setRfa5(((toDecode.at(18)<<8) & 0xFF)|(toDecode.at(19) & 0xFF));
+                rec.setReceiverHandle(toDecode.at(index++));//16
+                int extractAtIndex_3 = index++;
+                rec.setBroadcastStandard((toDecode.at(extractAtIndex_3))>>4);//17
+                rec.setMode((toDecode.at(extractAtIndex_3)) & 0x0F);//17
+                rec.setRfa5(((toDecode.at(index++)<<8) & 0xFF)|(toDecode.at(index++) & 0xFF));//18,19
                 dfe.addReceiverInstance(rec);
             }
             soc.addDFEInstance(dfe);
         }
-        soc.setRfa6((toDecode.at(20)<<24)|(toDecode.at(21)<<16)|(toDecode.at(22)<<8)|(toDecode.at(23)));
+        soc.setRfa6((toDecode.at(index++)<<24)|(toDecode.at(index++)<<16)|(toDecode.at(index++)<<8)|(toDecode.at(index++)));//20,21,22,23
         addsocInstance(soc);
     }
-    setRfa7((toDecode.at(24)<<24)|(toDecode.at(25)<<16)|(toDecode.at(26)<<8)|(toDecode.at(27)));
+    setRfa7((toDecode.at(index++)<<24)|(toDecode.at(index++)<<16)|(toDecode.at(index++)<<8)|(toDecode.at(index++)));//24,25,26,27
 };
