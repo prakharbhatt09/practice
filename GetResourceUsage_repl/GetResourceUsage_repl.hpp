@@ -18,7 +18,7 @@ class GetResourceUsage_repl{
     uint32_t Rfa7;
 
     public:
-    GetResourceUsage_repl();
+    GetResourceUsage_repl() = default;
     GetResourceUsage_repl(uint8_t Cookie_val, uint8_t ReplyStatus_val, uint8_t Rfa_val, uint8_t NrOfSoCs_val, uint8_t Rfa7_val)
                     :Cookie{Cookie_val}, ReplyStatus{ReplyStatus_val},  Rfa{Rfa_val}, NrOfSoCs{NrOfSoCs_val}, Rfa7{Rfa7_val}{
                     }

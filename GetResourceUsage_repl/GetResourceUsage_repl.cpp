@@ -28,8 +28,8 @@ vector<uint8_t> GetResourceUsage_repl::encode(){
         for(uint8_t j=0; j<soc.getNrOfTunerPaths(); j++){
             auto &tunerPath = soc.tunerPaths.at(j);
             toEncode.push_back(tunerPath.getAntennaHandle());//7
-            toEncode.push_back((tunerPath.getActive()<<1)|(tunerPath.getRfa2()<<3)|((tunerPath.getActiveNBTs()<<4) & 0x0F));//8 check?
-            toEncode.push_back((tunerPath.getAntennaPort()<<4)|(tunerPath.getRfa3() & 0x0F));//9
+            toEncode.push_back((tunerPath.getActive()<<7)|(tunerPath.getActiveNBTs() & 0x0F));//8 check?
+            toEncode.push_back((tunerPath.getAntennaPort()<<4)|(tunerPath.getRfa3()));//9
                                                             
             for(uint8_t k=0; k<tunerPath.getActiveNBTs(); k++){
                 auto &nbt = tunerPath.nbts.at(k);
@@ -86,7 +86,7 @@ void GetResourceUsage_repl::decode(const vector<uint8_t>& toDecode){
             int extractAtIndex_1 = index++;
             path.setActive(toDecode.at(extractAtIndex_1)>>1);//8,check?
             path.setRfa2(toDecode.at(extractAtIndex_1)>>3);//8
-            path.setActiveNBTs((toDecode.at(extractAtIndex_1)>>4) & 0x0F);//8
+            path.setActiveNBTs((toDecode.at(extractAtIndex_1)>>4));//8
             int extractAtIndex_2 = index++;
             path.setAntennaPort(toDecode.at(extractAtIndex_2)>>4);//9
             path.setRfa3((toDecode.at(extractAtIndex_2)>>4) & 0x0F);//9
