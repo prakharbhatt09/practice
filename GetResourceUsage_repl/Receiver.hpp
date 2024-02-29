@@ -14,7 +14,7 @@ class Receiver{
     uint16_t Rfa5;
 
     public:
-    Receiver();
+    Receiver() = default;
     Receiver(uint8_t ReceiverHandle_val, uint8_t BroadcastStandard_val, uint8_t Mode_val, uint8_t Rfa5_val)
     :ReceiverHandle{ReceiverHandle_val}, BroadcastStandard{BroadcastStandard_val}, Mode{Mode_val}, Rfa5{Rfa5_val}{
 

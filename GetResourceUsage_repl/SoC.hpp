@@ -18,7 +18,7 @@ class SoC{
     uint32_t Rfa6;
 
     public:
-    SoC();
+    SoC() = default;
     SoC(uint8_t Rfa1_val, uint8_t SoC_ID_val, uint8_t NrOfTunerPaths_val, uint8_t NrOfDFEs_val, uint8_t Rfa6_val)
       :Rfa1{Rfa1_val}, SoC_ID{SoC_ID_val}, NrOfTunerPaths{NrOfTunerPaths_val}, NrOfDFEs{NrOfDFEs_val}, Rfa6{Rfa6_val}{
     }

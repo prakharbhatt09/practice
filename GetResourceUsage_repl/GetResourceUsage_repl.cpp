@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void GetResourceUsage_repl::addsocInstance(SoC &socObject){
+void GetResourceUsage_repl::addsocInstance(const SoC &socObject){
     socs.push_back(socObject);
 };
 
@@ -72,24 +72,25 @@ void GetResourceUsage_repl::decode(const vector<uint8_t>& toDecode){
     setReplyStatus(toDecode.at(3));
     setRfa((toDecode.at(4)) >> 4);
     setNrOfSoCs(toDecode.at(4) & 0x0F);
+
     int index = 5;
     
-    for(uint8_t i=0; i<NrOfSoCs; i++){
+    for(uint8_t i=0; i<getNrOfSoCs(); i++){
         SoC soc;
         soc.setRfa1((toDecode.at(index))>>4);//5
         soc.setSoC_ID((toDecode.at(index) & 0x0F));//5
+        index++;
         soc.setNrOfTunerPaths(toDecode.at(index++));//6
 
         for(uint8_t j=0; j<soc.getNrOfTunerPaths(); j++){
             TunerPath path;
             path.setAntennaHandle(toDecode.at(index++));//7
             int extractAtIndex_1 = index++;
-            path.setActive(toDecode.at(extractAtIndex_1)>>1);//8,check?
-            path.setRfa2(toDecode.at(extractAtIndex_1)>>3);//8
-            path.setActiveNBTs((toDecode.at(extractAtIndex_1)>>4));//8
+            path.setActive(toDecode.at(extractAtIndex_1)>>7);//8,check?
+            path.setActiveNBTs((toDecode.at(extractAtIndex_1) & 0x0F));//8
             int extractAtIndex_2 = index++;
             path.setAntennaPort(toDecode.at(extractAtIndex_2)>>4);//9
-            path.setRfa3((toDecode.at(extractAtIndex_2)>>4) & 0x0F);//9
+            path.setRfa3((toDecode.at(extractAtIndex_2)) & 0x0F);//9
 
             for(uint8_t k=0; k<path.getActiveNBTs(); k++){
                 NBT nbt;

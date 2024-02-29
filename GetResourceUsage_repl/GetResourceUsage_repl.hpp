@@ -37,7 +37,7 @@ class GetResourceUsage_repl{
     
     vector<SoC> socs;
 
-    void addsocInstance(SoC &socObject);
+    void addsocInstance(const SoC &socObject);
 
     vector<uint8_t> encode();
     void decode(const vector<uint8_t>& toDecode);

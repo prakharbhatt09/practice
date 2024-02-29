@@ -12,7 +12,7 @@ class DFE{
     uint8_t NrOfAssignedReceivers;//Max 8
 
     public:  
-    DFE();
+    DFE() = default;
     DFE(uint8_t NrOfAssignedReceivers_val)
     :NrOfAssignedReceivers{NrOfAssignedReceivers_val}{
     }

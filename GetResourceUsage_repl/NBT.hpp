@@ -14,7 +14,7 @@ class NBT{
     uint16_t Rfa4;
 
     public:
-    NBT();
+    NBT() = default;
     NBT(uint8_t NBT_ix_val, uint8_t Assigned_DFE_ix_val, uint8_t Rfa4_val)
         :NBT_ix{NBT_ix_val}, Assigned_DFE_ix{Assigned_DFE_ix_val}, Rfa4{Rfa4_val}{
         }

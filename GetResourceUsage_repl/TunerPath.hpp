@@ -18,7 +18,7 @@ class TunerPath{
     uint8_t Rfa3;
 
     public:
-    TunerPath();  
+    TunerPath() = default;  
     TunerPath(uint8_t AntennaHandle_val, uint8_t Active_val, uint8_t Rfa2_val, uint8_t ActiveNBTs_val, uint8_t AntennaPort_val, uint8_t Rfa3_val)
         :AntennaHandle{AntennaHandle_val}, Active{Active_val}, Rfa2{Rfa2_val}, ActiveNBTs{ActiveNBTs_val}, AntennaPort{AntennaPort_val}, Rfa3{Rfa3_val}{
 
