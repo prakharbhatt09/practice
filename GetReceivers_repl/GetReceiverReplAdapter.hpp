@@ -28,15 +28,17 @@ class AntennaAdapter : public I_Antenna{
 
     uint8_t getAntennaHandle() override;
 
-    ~AntennaAdapter(){};
+    ~AntennaAdapter(){
+        delete ant;
+    };
 };
 
 class MockAntenna : public I_Antenna{
     public:
     MockAntenna(){};
     uint8_t AntennaHandle;
-    void setAntennaHandle(uint8_t AntennaHandle_val) {AntennaHandle = AntennaHandle_val;}
-    uint8_t getAntennaHandle(){return AntennaHandle;}
+    void setAntennaHandle(uint8_t AntennaHandle_val) override;
+    uint8_t getAntennaHandle() override;
 
     ~MockAntenna(){};
 };
@@ -55,10 +57,11 @@ class ReceiverAdapter : public I_Receiver{
     public:
     ReceiverAdapter(I_Receiver *receiver) : rec(receiver){};
 
-    ~ReceiverAdapter(){};
-
     void addAntennaHandleInstance(I_Antenna *AntennaHandleObject) override;
 
+    ~ReceiverAdapter(){
+        delete rec;
+    };
 };
 
 class MockReceiver : public I_Receiver{
@@ -67,9 +70,7 @@ class MockReceiver : public I_Receiver{
     public:
     MockReceiver(){};
 
-    void addAntennaHandleInstance(I_Antenna *AntennaHandleObject){
-        AntennaHandlesVectorMock.push_back(AntennaHandleObject);
-    };
+    void addAntennaHandleInstance(I_Antenna *AntennaHandleObject) override;
 
     ~MockReceiver(){};
 };
@@ -90,11 +91,13 @@ class MsgReplAdapter : public I_GetReceiversRepl{
     public:
     MsgReplAdapter(I_GetReceiversRepl* message) : msg(message){};
 
-    ~MsgReplAdapter(){};
-
     void decode(const vector<uint8_t> &toDecode) override;
 
     void addReceiverInstance(I_Receiver *ReceiverObject) override;
+
+    ~MsgReplAdapter(){
+        delete msg;
+    };
 };
 
 class MockMessage : public I_GetReceiversRepl{
@@ -106,9 +109,7 @@ class MockMessage : public I_GetReceiversRepl{
 
     void decode(const vector<uint8_t> &toDecode){};
 
-    void addReceiverInstance(I_Receiver *ReceiverObject){
-        receiversVectorMock.push_back(ReceiverObject);
-    };
+    void addReceiverInstance(I_Receiver *ReceiverObject) override;
 
     ~MockMessage(){};
 };
