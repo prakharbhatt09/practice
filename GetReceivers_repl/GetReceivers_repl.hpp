@@ -1,10 +1,22 @@
+#ifndef GETRECEIVERS_REPL
+#define GETRECEIVERS_REPL
+
 #include <vector>
 #include <cstdint>
 #include "Receiver.hpp"
 
 using namespace std;
 
-class GetReceivers_repl{
+class I_GetReceiversRepl{
+    public:
+    virtual void decode(const vector<uint8_t> &toDecode) = 0;
+
+    virtual void addReceiverInstance(I_Receiver &ReceiverObject) = 0;
+
+    virtual ~I_GetReceiversRepl(){};
+};
+
+class GetReceivers_repl : public I_GetReceiversRepl{
 
     private:
     uint8_t MessageType;
@@ -13,7 +25,7 @@ class GetReceivers_repl{
     uint8_t ReplyStatus;
     uint8_t Rfa1;
     uint8_t NrOfReceivers;
-    vector<Receiver> receiversVector;
+    vector<I_Receiver*> receiversVector;
     uint32_t Rfa5;
 
     public:
@@ -23,10 +35,10 @@ class GetReceivers_repl{
     uint8_t getRfa1(){return Rfa1;}
     uint8_t getNrOfReceivers(){return NrOfReceivers;}
     uint8_t getRfa5(){return Rfa5;}
-    vector<Receiver> getReceiversVector(){return receiversVector;}
+    vector<I_Receiver*> getReceiversVector(){return receiversVector;}
 
-    void addReceiverInstance(Receiver &ReceiverObject);
-    void decode(const vector<uint8_t> &toDecode);
+    void addReceiverInstance(I_Receiver &ReceiverObject) override;
+    void decode(const vector<uint8_t> &toDecode) override;
 
     void setMessageType(uint8_t MessageType_val){MessageType = MessageType_val;}
     void setCookie(uint8_t Cookie_val){Cookie = Cookie_val;}
@@ -36,3 +48,4 @@ class GetReceivers_repl{
     void setRfa5(uint8_t Rfa5_val){Rfa5 = Rfa5_val;}
     
 };
+#endif

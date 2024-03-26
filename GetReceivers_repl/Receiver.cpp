@@ -2,6 +2,6 @@
 #include<cstdint>
 #include "Receiver.hpp"
 
-void Receiver::addAntennaHandleInstance(Antenna &AntennaHandleObject){
-    AntennaHandlesVector.push_back(AntennaHandleObject);
+void Receiver::addAntennaHandleInstance(I_Antenna &AntennaHandleObject){
+    AntennaHandlesVector.push_back(&AntennaHandleObject);
 };

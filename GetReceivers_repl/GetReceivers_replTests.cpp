@@ -1,8 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include "catch2/catch.hpp"
+#include "fakeit.hpp"
 #include "GetReceivers_repl.hpp"
 
 using namespace std;
+using namespace fakeit;
 
 TEST_CASE("decoding for 0 receiver and 0 AntennaHandle")
 {

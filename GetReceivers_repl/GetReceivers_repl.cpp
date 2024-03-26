@@ -1,9 +1,11 @@
 #include<vector>
 #include<cstdint>
 #include "GetReceivers_repl.hpp"
+#include "Receiver.hpp"
+#include "Antenna.hpp"
 
-void GetReceivers_repl::addReceiverInstance(Receiver &ReceiverObject){
-    receiversVector.push_back(ReceiverObject);
+void GetReceivers_repl::addReceiverInstance(I_Receiver &ReceiverObject) {
+    receiversVector.push_back(&ReceiverObject);
 };
 
 void GetReceivers_repl::decode(const vector<uint8_t> &toDecode){

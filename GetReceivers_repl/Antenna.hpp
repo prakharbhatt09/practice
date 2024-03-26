@@ -1,17 +1,28 @@
+#ifndef ANTENNA_H
+#define ANTENNA_H
+
 #include<vector>
 #include<cstdint>
 
 using namespace std;
 
-class Antenna{
+class I_Antenna{
+    public:
+    virtual uint8_t getAntennaHandle() = 0;
+
+    virtual ~I_Antenna(){};
+};
+
+class Antenna : public I_Antenna{
     private:
     uint8_t AntennaHandle;
     uint8_t Rfa3;
 
     public:
-    uint8_t getAntennaHandle(){return AntennaHandle;}
-    uint8_t getRfa3(){return Rfa3;}
+    uint8_t getAntennaHandle() override;
+    uint8_t getRfa3();
 
-    void setAntennaHandle(uint8_t AntennaHandle_val){AntennaHandle = AntennaHandle_val;}
-    void setRfa3(uint8_t Rfa3_val){Rfa3 = Rfa3_val;}
+    void setAntennaHandle(uint8_t AntennaHandle_val);
+    void setRfa3(uint8_t Rfa3_val);
 };
+#endif

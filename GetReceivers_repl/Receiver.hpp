@@ -1,10 +1,20 @@
+#ifndef RECEIVER_H
+#define RECEIVER_H
+
 #include <vector>
 #include <cstdint>
 #include "Antenna.hpp"
 
 using namespace std;
 
-class Receiver{
+class I_Receiver{
+    public:
+    virtual void addAntennaHandleInstance(I_Antenna &AntennaHandleObject) = 0;
+
+    virtual ~I_Receiver(){};
+};
+
+class Receiver : public I_Receiver{
     private:
     uint8_t ReceiverHandle;
     uint8_t PHY_ID;
@@ -15,7 +25,7 @@ class Receiver{
     uint8_t Rfa2;
     uint8_t NrOfAntennaHandles;
     uint32_t Rfa4;
-    vector<Antenna> AntennaHandlesVector;
+    vector<I_Antenna*> AntennaHandlesVector;
 
     public:
     uint8_t getReceiverHandle(){return ReceiverHandle;}
@@ -27,7 +37,7 @@ class Receiver{
     uint8_t getRfa2(){return Rfa2;}
     uint8_t getNrOfAntennaHandles(){return NrOfAntennaHandles;}
     uint32_t getRfa4(){return Rfa4;}
-    vector<Antenna> getAntennaHandlesVector(){return AntennaHandlesVector;}
+    vector<I_Antenna*> getAntennaHandlesVector(){return AntennaHandlesVector;}
 
     void setReceiverHandle(uint8_t ReceiverHandle_val){ReceiverHandle = ReceiverHandle_val;}
     void setPHY_ID(uint8_t PHY_ID_val){PHY_ID = PHY_ID_val;}
@@ -38,5 +48,6 @@ class Receiver{
     void setRfa2(uint8_t Rfa2_val){Rfa2 = Rfa2_val;}
     void setNrOfAntennaHandles(uint8_t NrOfAntennaHandles_val){NrOfAntennaHandles = NrOfAntennaHandles_val;}
     void setRfa4(uint32_t Rfa4_val){Rfa4 = Rfa4_val;}
-    void addAntennaHandleInstance(Antenna &AntennaHandleObject);
+    void addAntennaHandleInstance(I_Antenna &AntennaHandleObject) override;
 };
+#endif
